@@ -9,6 +9,9 @@ import {
     WorkStatus, CustomCursor
 } from "./styles/startSectionStyles";
 import arrowSvg from "../images/arrow.svg";
+import { Girl } from "./styles/secondSectionStyles";
+import girl from "../images/runGirl.gif";
+import robot from "../images/robot.gif";
 
 gsap.registerPlugin(TextPlugin);
 
@@ -22,6 +25,8 @@ function StartSection({ text = "Frontend Developer" }) {
     const arrowImg = useRef(null);
     const cursor = useRef(null);
     const openToWork = useRef(null);
+    const robotRef = useRef(null);
+    const girlRef = useRef(null);
 
     useEffect(() => {
         const elFrontend = professionFrontend.current;
@@ -77,12 +82,33 @@ function StartSection({ text = "Frontend Developer" }) {
                 ease: 'power3.out',
             });
         };
-
+        gsap.to(girlRef.current, {
+            start: "top top",
+            x: 1500,
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            duration: 8,
+        });
+        gsap.to(robotRef.current, {
+            scrollTrigger: robotRef.current,
+            start: "top top",
+            endTrigger: robotRef.current,
+            x: 1500,
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            duration: 10,
+        });
         window.addEventListener('mousemove', moveCursor);
 
         return () => {
             window.removeEventListener('mousemove', moveCursor);
         };
+
+
     }, []);
 
     useEffect(() => {
@@ -106,6 +132,17 @@ function StartSection({ text = "Frontend Developer" }) {
             <ArrowImg src={arrowSvg} alt="" ref={arrowImg}/>
             <WorkStatus ref={openToWork}>open to work</WorkStatus>
             <CustomCursor  ref={cursorRef} />
+            <Girl ref={girlRef} bottom={"-90px"}  src={girl} alt="girl"/>
+            <img src={robot} alt="robot"
+                 style={{
+                     height: "150px",
+                     width: "150px",
+                     position: "absolute",
+                     bottom: "-20px",
+                     left: "-90px",
+                     zIndex: 5,
+                 }}
+               ref={robotRef} />
         </HeaderSection>
     );
 }

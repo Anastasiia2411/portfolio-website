@@ -35,7 +35,8 @@ export const Girl = styled.img`
   width: 300px;
   height: 300px;
   position: absolute;
-  bottom: -50px;
+  bottom: ${props => props.bottom || "-50px"};
+  z-index: 5;
 `;
 
 export const House = styled.img`
@@ -44,6 +45,7 @@ export const House = styled.img`
   position: absolute;
   right: -390px;
   bottom: -60px;
+  z-index: 10;
 `;
 
 export const Avatar = styled.img`
@@ -72,4 +74,16 @@ export const DialogParagraph = styled.p`
   font-family: 'Pixelify Sans', sans-serif;
   font-size: 18px;
   left: 70px;
+  top: 30px;
+`
+
+export const DialogHeader = styled.h3`
+  position: absolute;
+  display: inline-block;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 25px;
+  left: 70px;
+  top: -10px;
+  color: black;
+
 `
