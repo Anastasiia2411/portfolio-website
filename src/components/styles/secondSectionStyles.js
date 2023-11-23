@@ -2,7 +2,7 @@ import styled from "styled-components";
 import roadImage from "../../images/road.gif";
 import way from "../../images/way.png";
 import message from "../../images/background.svg";
-import cursor from "../../images/mouse.png"
+import cursor from "../../images/mouse.png";
 
 export const RoadSection = styled.section`
   background-image: url(${roadImage});
@@ -14,7 +14,6 @@ export const RoadSection = styled.section`
   width: 100vw;
   position: relative;
   overflow: hidden;
-  cursor: url(${cursor});
 `;
 
 export const Footer = styled.footer`
@@ -46,44 +45,74 @@ export const House = styled.img`
   right: -390px;
   bottom: -60px;
   z-index: 10;
+  pointer-events: none;
+`;
+
+export const DialogContainer = styled.div`
+  display: flex;
+  position: absolute;
+  background-image: url(${message});
+  width: 400px;
+  height: 150px;
+  background-repeat: no-repeat;
+  top: ${props => props.top || "auto"};
+  right: ${props => props.right || "auto"};
+  bottom: ${props => props.bottom || "auto"};
+  left: ${props => props.left || "auto"};
+  overflow: hidden;
+`;
+export const TextContainer = styled.div`
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DialogParagraph = styled.p`
+  display: inline-block;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 18px;
+  margin: 10px 0 0 0;
+  max-width: 280px;
 `;
 
 export const Avatar = styled.img`
   width: 40px;
   height: 40px;
-  position: absolute;
-  left: 20px;
-  top: 10px;
+  margin-left: 25px;
+  margin-top: 20px;
 `;
-
-export const DialogContainer = styled.div`
-  position: relative;
-  background-image: url(${message});
-  width: 400px;
-  height: 150px;
-  background-repeat: no-repeat;
-  top: ${props => props.top || 'auto'};
-  right: ${props => props.right || 'auto'};
-  bottom: ${props => props.bottom || 'auto'};
-  left: ${props => props.left || 'auto'};
-`;
-
-export const DialogParagraph = styled.p`
-  position: absolute;
-  display: inline-block;
-  font-family: 'Pixelify Sans', sans-serif;
-  font-size: 18px;
-  left: 70px;
-  top: 30px;
-`
 
 export const DialogHeader = styled.h3`
-  position: absolute;
   display: inline-block;
   font-family: 'Pixelify Sans', sans-serif;
   font-size: 25px;
-  left: 70px;
-  top: -10px;
   color: black;
+  margin: 20px 0 0 0;
+`;
 
+export const SecondSectionCursor = styled.div`
+  width: 60px;
+  height: 60px;
+  background-image: url(${cursor});
+  background-size: 100% 100%; /* Заполнить элемент изображением */
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+`;
+
+export const Cat = styled.img`
+  position: absolute;
+  right: 20px;
+  top: 65px;
+  z-index: 100;
 `
+
+
+export const Robot = styled.img`
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  bottom: 20px;
+  left: -90px;
+  z-index: 5;
+`;

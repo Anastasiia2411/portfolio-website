@@ -68,9 +68,10 @@ export const CustomCursor = styled.div`
   height: 100px;
   background-color: white;
   border-radius: 50%;
-  position: fixed; 
+  position: absolute; 
   pointer-events: none;
   z-index: 1000;
   mix-blend-mode: difference; 
+  
 `
 

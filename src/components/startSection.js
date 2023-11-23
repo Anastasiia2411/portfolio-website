@@ -27,12 +27,13 @@ function StartSection({ text = "Frontend Developer" }) {
     const openToWork = useRef(null);
     const robotRef = useRef(null);
     const girlRef = useRef(null);
+    const section = useRef(null);
 
     useEffect(() => {
         const elFrontend = professionFrontend.current;
         const elDeveloper = professionDeveloper.current;
         const cur = cursor.current;
-        const text = openToWork.current
+        const text = openToWork.current;
 
         cur.textContent = "|";
 
@@ -52,15 +53,15 @@ function StartSection({ text = "Frontend Developer" }) {
                 let newAnimation = gsap.timeline();
                 newAnimation.fromTo(text, {
                     y: -400,
-                    opacity:0,
-                },{
+                    opacity: 0,
+                }, {
                     y: 0,
                     duration: 1,
-                    opacity:1,
+                    opacity: 1,
                     ease: "power1.inOut",
                 });
             }
-        })
+        });
 
         tl.to(cur, {
             opacity: 0,
@@ -79,35 +80,28 @@ function StartSection({ text = "Frontend Developer" }) {
                 x: e.clientX,
                 y: e.clientY,
                 duration: 0.3,
-                ease: 'power3.out',
+                ease: "power3.out",
             });
         };
         gsap.to(girlRef.current, {
-            start: "top top",
+            scrollTrigger: {
+                trigger: section.current,
+            },
             x: 1500,
-            scrub: true,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            duration: 8,
+            duration: 6,
         });
         gsap.to(robotRef.current, {
-            scrollTrigger: robotRef.current,
-            start: "top top",
-            endTrigger: robotRef.current,
+            scrollTrigger: {
+                trigger: section.current,
+            },
             x: 1500,
-            scrub: true,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            duration: 10,
+            duration: 8,
         });
-        window.addEventListener('mousemove', moveCursor);
+        section.current.addEventListener("mousemove", moveCursor);
 
         return () => {
-            window.removeEventListener('mousemove', moveCursor);
+            section.current.removeEventListener("mousemove", moveCursor);
         };
-
 
     }, []);
 
@@ -122,7 +116,7 @@ function StartSection({ text = "Frontend Developer" }) {
     }, []);
 
     return (
-        <HeaderSection>
+        <HeaderSection ref={section}>
             <NameParagraph>Anastasiia Mielnikova</NameParagraph>
             <ProfessionHeader>
                 <span ref={professionFrontend}/>
@@ -131,8 +125,8 @@ function StartSection({ text = "Frontend Developer" }) {
             </ProfessionHeader>
             <ArrowImg src={arrowSvg} alt="" ref={arrowImg}/>
             <WorkStatus ref={openToWork}>open to work</WorkStatus>
-            <CustomCursor  ref={cursorRef} />
-            <Girl ref={girlRef} bottom={"-90px"}  src={girl} alt="girl"/>
+            <CustomCursor ref={cursorRef}/>
+            <Girl ref={girlRef} bottom={"-90px"} src={girl} alt="girl"/>
             <img src={robot} alt="robot"
                  style={{
                      height: "150px",
@@ -142,7 +136,7 @@ function StartSection({ text = "Frontend Developer" }) {
                      left: "-90px",
                      zIndex: 5,
                  }}
-               ref={robotRef} />
+                 ref={robotRef}/>
         </HeaderSection>
     );
 }
