@@ -18,6 +18,7 @@ import SecondSectionDecor from "./secondSectionDecor"
 import cat from "../images/pixel-cat.gif";
 import SecondSectionDialogContainer from "./secondSectionDialogContainer"
 import Boom from "../images/boom.gif"
+import fire from "../images/fire.gif"
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function SecondSection() {
@@ -32,7 +33,8 @@ function SecondSection() {
     const cursorRef = useRef(null);
     const dialogRobotContainer = useRef(null);
     const dialogGirlContainer = useRef(null)
-    const fire = useRef(null)
+    const boom = useRef(null)
+    const fireRef = useRef(null)
     const tm = gsap.timeline({repeat:0});
 
     useEffect(() => {
@@ -63,6 +65,25 @@ function SecondSection() {
             .to(catRef.current, { x: -130, duration: 1, ease: "power3.inOut" })
             .to(catRef.current, { scaleX: -1, duration: 0 })
             .to(catRef.current, { x: 0, duration: 1, ease: "power1.inOut" });
+
+
+        gsap.to(girlRef.current, {
+            scrollTrigger: {
+                trigger: roadRef.current,
+            },
+            x: 1200,
+            duration: 20,
+        });
+
+        tm.to(robotRef.current, {
+            scrollTrigger: {
+                trigger: roadRef.current,
+            },
+            x: 1200,
+            duration: 35,
+        });
+
+
 
         gsap.timeline({ repeat: 0 })
             .to(dialogGirl.current, {
@@ -142,14 +163,14 @@ function SecondSection() {
             text: "Создаю... веб-сайт... не... могу... ",
             onStart: () => {
                 tm.kill()
-                gsap.to(fire.current, {
+                gsap.to(boom.current, {
                     opacity: 1,
                     scale: 1.5,
                     duration: 5,
                     ease: "power3.out",
                     onComplete: () => {
                         const tl = gsap.timeline();
-                        tl.to(fire.current, {
+                        tl.to(boom.current, {
                             opacity: 0,
                             duration: 0.5
                         })
@@ -157,6 +178,13 @@ function SecondSection() {
                             y: 40,
                             rotation: -90,
                             duration: 1,
+                                onComplete:()=>{
+                                gsap.to(fireRef.current,{
+                                    opacity: 1,
+                                    duration: 1,
+                                    y:"-=40",
+                                })
+                                },
                             ease: "power1.in"
                         });
                     }
@@ -216,23 +244,6 @@ function SecondSection() {
         };
     }, []);
 
-    useEffect(() => {
-        gsap.to(girlRef.current, {
-            scrollTrigger: {
-                trigger: roadRef.current,
-            },
-            x: 1200,
-            duration: 20,
-        });
-
-        tm.to(robotRef.current, {
-            scrollTrigger: {
-                trigger: roadRef.current,
-            },
-            x: 1200,
-            duration: 35,
-        });
-    }, []);
 
     function catUp() {
         let tl = gsap.timeline();
@@ -262,7 +273,8 @@ function SecondSection() {
             <Girl ref={girlRef} src={girl} alt="girl" onClick={girlUp}/>
             <House src={house} alt="house" ref={houseRef}/>
             <Robot src={robot} alt="robot" ref={robotRef}/>
-            <img src={Boom} alt="boom" ref={fire} width={100} height={100} style={{position:"absolute", opacity:0, bottom:"120px", right:"590px", zIndex:"100"}}/>
+            <img src={Boom} alt="boom" ref={boom} width={100} height={100} style={{position:"absolute", opacity:0, bottom:"120px", right:"590px", zIndex:"100"}}/>
+            <img src={fire} alt="fire" ref={fireRef} width={100} height={100} style={{position:"absolute", opacity:0, bottom:"30px", right:"575px", zIndex:"4"}}/>
             <Cat src={cat} alt="cat" width={70} height={70} ref={catRef} onClick={catUp}/>
             <SecondSectionDialogContainer top={"8%"} left={"50%"} src={girlAvatarImg} alt={"girl avatar"}
                                           containerRef={dialogGirlContainer}  text={"Asy"} paragraphRef={dialogGirl}/>
