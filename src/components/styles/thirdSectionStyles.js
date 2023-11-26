@@ -18,7 +18,7 @@ export const RoomCat = styled.img`
   transform: scaleX(-1);
   position: absolute;
   left: 700px;
-  top: 200px;
+  top: 10px;
 `;
 
 export const RoomGirl = styled.img`
