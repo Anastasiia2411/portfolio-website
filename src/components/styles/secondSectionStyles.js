@@ -116,3 +116,4 @@ export const Robot = styled.img`
   left: -90px;
   z-index: 5;
 `;
+

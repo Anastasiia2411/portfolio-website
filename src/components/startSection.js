@@ -6,7 +6,7 @@ import {
     ProfessionHeader,
     HeaderSection,
     ArrowImg,
-    WorkStatus, CustomCursor
+    WorkStatus, CustomCursor, Robot
 } from "./styles/startSectionStyles";
 import arrowSvg from "../images/arrow.svg";
 import { Girl } from "./styles/secondSectionStyles";
@@ -127,16 +127,7 @@ function StartSection({ text = "Frontend Developer" }) {
             <WorkStatus ref={openToWork}>open to work</WorkStatus>
             <CustomCursor ref={cursorRef}/>
             <Girl ref={girlRef} bottom={"-90px"} src={girl} alt="girl"/>
-            <img src={robot} alt="robot"
-                 style={{
-                     height: "150px",
-                     width: "150px",
-                     position: "absolute",
-                     bottom: "-20px",
-                     left: "-90px",
-                     zIndex: 5,
-                 }}
-                 ref={robotRef}/>
+            <Robot src={robot} alt="robot" ref={robotRef}/>
         </HeaderSection>
     );
 }

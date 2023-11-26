@@ -15,8 +15,9 @@ import robot from "../images/robot.gif";
 import robotAvatarImg from "../images/robotAvatar.png";
 import girlAvatarImg from "../images/girlAvatar.png";
 import SecondSectionDecor from "./secondSectionDecor"
-import cat from "../images/pixel-cat.png";
+import cat from "../images/pixel-cat.gif";
 import SecondSectionDialogContainer from "./secondSectionDialogContainer"
+import Boom from "../images/boom.gif"
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function SecondSection() {
@@ -30,7 +31,8 @@ function SecondSection() {
     const catRef = useRef(null);
     const cursorRef = useRef(null);
     const dialogRobotContainer = useRef(null);
-    const robotAnimation = useRef(null)
+    const dialogGirlContainer = useRef(null)
+    const fire = useRef(null)
     const tm = gsap.timeline({repeat:0});
 
     useEffect(() => {
@@ -115,8 +117,7 @@ function SecondSection() {
             text: "",
             ease: "none",
             delay: 0
-        })
-            .to(dialogRobot.current, {
+        }).to(dialogRobot.current, {
                 duration: 2,
                 text: "Спрашивай!",
                 ease: "none",
@@ -139,9 +140,28 @@ function SecondSection() {
         }).to(dialogRobot.current, {
             duration: 2,
             text: "Создаю... веб-сайт... не... могу... ",
-            // onStart: () => {
-            //     tm.kill()
-            // },
+            onStart: () => {
+                tm.kill()
+                gsap.to(fire.current, {
+                    opacity: 1,
+                    scale: 1.5,
+                    duration: 5,
+                    ease: "power3.out",
+                    onComplete: () => {
+                        const tl = gsap.timeline();
+                        tl.to(fire.current, {
+                            opacity: 0,
+                            duration: 0.5
+                        })
+                            .to(robotRef.current, {
+                            y: 40,
+                            rotation: -90,
+                            duration: 1,
+                            ease: "power1.in"
+                        });
+                    }
+                });
+            },
             ease: "none",
             delay: 0
         }).to(dialogGirl.current, {
@@ -152,7 +172,6 @@ function SecondSection() {
         }).to(dialogRobotContainer.current, {
             duration: 1,
             rotation: 20,
-
             transformOrigin: "bottom left",
             ease: "none"
         }).to(dialogRobotContainer.current, {
@@ -162,6 +181,10 @@ function SecondSection() {
             y: "+=700",
             scale: 0.5,
             transformOrigin: "bottom left",
+            ease: "power3.out"
+        }).to(dialogGirlContainer.current, {
+            duration: 2,
+            x: "-=300",
             ease: "power3.out"
         }).to(dialogGirl.current, {
             duration: 2,
@@ -239,9 +262,13 @@ function SecondSection() {
             <Girl ref={girlRef} src={girl} alt="girl" onClick={girlUp}/>
             <House src={house} alt="house" ref={houseRef}/>
             <Robot src={robot} alt="robot" ref={robotRef}/>
+            <img src={Boom} alt="boom" ref={fire} width={100} height={100} style={{position:"absolute", opacity:0, bottom:"120px", right:"590px", zIndex:"100"}}/>
             <Cat src={cat} alt="cat" width={70} height={70} ref={catRef} onClick={catUp}/>
-            <SecondSectionDialogContainer top={"8%"} left={"50%"} src={girlAvatarImg} alt={"girl avatar"} text={"Asy"} paragraphRef={dialogGirl}/>
-            <SecondSectionDialogContainer top={"15%"} left={"100px"} containerRef={dialogRobotContainer} src={robotAvatarImg} alt={"robot avatar"} text={"Bip-Boop-223"} paragraphRef={dialogRobot}/>
+            <SecondSectionDialogContainer top={"8%"} left={"50%"} src={girlAvatarImg} alt={"girl avatar"}
+                                          containerRef={dialogGirlContainer}  text={"Asy"} paragraphRef={dialogGirl}/>
+            <SecondSectionDialogContainer top={"15%"} left={"100px"} containerRef={dialogRobotContainer}
+                                          src={robotAvatarImg} alt={"robot avatar"} text={"Bip-Boop-223"}
+                                          paragraphRef={dialogRobot}/>
             <SecondSectionDecor/>
             <Footer ref={roadRef}/>
         </RoadSection>

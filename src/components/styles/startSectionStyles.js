@@ -71,7 +71,13 @@ export const CustomCursor = styled.div`
   position: absolute; 
   pointer-events: none;
   z-index: 1000;
-  mix-blend-mode: difference; 
-  
+  mix-blend-mode: difference;
 `
-
+export const Robot = styled.img`
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  bottom: -20px;
+  left: -90px;
+  z-index: 5;
+`
