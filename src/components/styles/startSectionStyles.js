@@ -6,6 +6,8 @@ export const HeaderSection = styled.section`
   position: relative;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
+  
 `;
 
 export const NameParagraph = styled.p`

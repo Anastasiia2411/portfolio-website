@@ -1,31 +1,78 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { RoomCat, RoomGirl, RoomSection } from "./styles/thirdSectionStyles";
-import catImage from "../images/room-cat.gif"
+import catImage from "../images/room-cat.gif";
 import { gsap } from "gsap";
-import girl from "../images/girl.png"
-import desktop from "../images/desktop.png"
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import girl from "../images/girl.png";
+import folder from "../images/folder.png";
+import SecondSectionDialogContainer from "./secondSectionDialogContainer";
+import roomGirlAvatarImg from "../images/roomGirlAvatar.png";
+import catAvatarImg from "../images/catAvatar.png";
+import computer from "../images/computer.png";
+gsap.registerPlugin(ScrollTrigger);
 
 
 
 
 function ThirdSection() {
-    const cat = useRef(null)
-  function catMove(){
-      gsap.to(cat.current, {
-          y: -20,
-          duration: 1,
-          ease: "power1.inOut",
-          repeat: -1,
-          yoyo: true,
-      });
+    const cat = useRef(null);
+    const computerRef = useRef(null);
+    const roomSection =useRef(null);
+
+    function catMove() {
+        gsap.to(cat.current, {
+            y: -20,
+            duration: 1,
+            ease: "power1.inOut",
+            repeat: -1,
+            yoyo: true,
+        });
     }
-    return(
-       <RoomSection>
-           <img src={desktop} alt="desktop" width={880} height={1000} style={{position:"absolute", left:"-100px", top:"-130px"}}/>
-           <RoomGirl src={girl} alt="girl"/>
-           <RoomCat src={catImage} ref={cat}  alt="cat" onLoad={catMove} />
-       </RoomSection>
-    )
+
+
+        // useLayoutEffect(() => {
+        //     let tl = gsap.timeline({
+        //         defaults: {
+        //             immediateRender: false,
+        //         },
+        //         scrollTrigger: {
+        //             trigger: cat.current,
+        //             start: "top center",
+        //             end: "center 30%",
+        //             // markers: true,
+        //         },
+        //     });
+        //
+        //     tl.to(computerRef.current, {
+        //         x: 400,
+        //         duration: 2,
+        //         // ease: "power1.inOut",
+        //
+        //
+        //     });
+        //     return () => {
+        //         tl.kill();
+        //     };
+        //
+        // }, []);
+
+    return (
+        <RoomSection ref={roomSection}>
+            {/*<img src={folder} alt="" width={70} height={70}/>*/}
+            {/*<img src={folder} alt="" width={70} height={70}/>*/}
+            {/*<img src={folder} alt="" width={70} height={70}/>*/}
+            {/*<img src={folder} alt="" width={70} height={70}/>*/}
+            {/*<img src={folder} alt="" width={70} height={70}/>*/}
+            {/*<img src={folder} alt="" width={70} height={70}/>*/}
+            {/*<img src={folder} alt="" width={70} height={70}/>*/}
+            <SecondSectionDialogContainer top={"60px"} left={"63%"} src={catAvatarImg} text={"Snoofy"} />
+            <SecondSectionDialogContainer top={"50%"} left={"54%"} src={roomGirlAvatarImg} text={"Asy"} />
+            <RoomGirl src={girl} alt="girl"/>
+            <img src={computer} ref={computerRef} className={"computer"} alt="computer" width={200} height={200}
+                 style={{ marginBottom: "30px" }}/>
+            <RoomCat src={catImage} ref={cat} alt="cat" onLoad={catMove}/>
+        </RoomSection>
+    );
 }
 
-export default ThirdSection
+export default ThirdSection;

@@ -9,21 +9,26 @@ export const RoomSection = styled.section`
   height: 100vh;
   width: 100vw;
   position: relative;
-  overflow: hidden;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: start;
+  align-items: end;
 `;
+
 
 export const RoomCat = styled.img`
   width: 250px;
   height: 250px;
-  transform: scaleX(-1);
+  //transform: scaleX(-1);
   position: absolute;
   left: 700px;
   top: 10px;
 `;
 
 export const RoomGirl = styled.img`
-  width: 350px;
-  height: 350px;
+  width: 320px;
+  height: 320px;
   position: absolute;
   right: 0;
   bottom:45px;

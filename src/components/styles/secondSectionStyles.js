@@ -6,7 +6,7 @@ import cursor from "../../images/mouse.png";
 
 export const RoadSection = styled.section`
   background-image: url(${roadImage});
-  background-attachment: fixed;
+  //background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
