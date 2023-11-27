@@ -9,11 +9,11 @@ export const RoomSection = styled.section`
   height: 100vh;
   width: 100vw;
   position: relative;
-  background-attachment: fixed;
-  overflow-x: hidden;
-  display: flex;
-  justify-content: start;
-  align-items: end;
+  //background-attachment: fixed;
+  overflow: hidden;
+  //display: flex;
+  //justify-content: start;
+  //align-items: end;
 `;
 
 

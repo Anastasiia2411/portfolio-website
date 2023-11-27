@@ -42,7 +42,7 @@ function SecondSection() {
             gsap.to(cursorRef.current, {
                 x: e.clientX,
                 y: e.clientY,
-                duration: 0.3,
+                duration: 0,
                 ease: "power3.out",
             });
         };
