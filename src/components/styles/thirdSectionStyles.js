@@ -9,7 +9,6 @@ export const RoomSection = styled.section`
   height: 100vh;
   width: 100vw;
   position: relative;
-  //background-attachment: fixed;
   overflow: hidden;
   //display: flex;
   //justify-content: start;
@@ -20,9 +19,9 @@ export const RoomSection = styled.section`
 export const RoomCat = styled.img`
   width: 250px;
   height: 250px;
-  //transform: scaleX(-1);
+  transform: scaleX(1);
   position: absolute;
-  left: 700px;
+  left: -300px;
   top: 10px;
 `;
 
@@ -30,7 +29,22 @@ export const RoomGirl = styled.img`
   width: 320px;
   height: 320px;
   position: absolute;
-  right: 0;
+  right: -450px;
   bottom:45px;
   transform: scaleX(-1);
 `;
+
+export const Triangle = styled.div`
+  transform: rotate(38deg);
+  
+  opacity: 0;
+  position: sticky;
+ top:-70px;
+  left: 50px;
+  width: 0;
+  height: 0;
+  border-left: 450px solid transparent;
+  border-right: 450px solid transparent;
+  border-bottom: 1050px solid yellow;
+
+`

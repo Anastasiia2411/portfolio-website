@@ -3,10 +3,11 @@ import roadImage from "../../images/road.gif";
 import way from "../../images/way.png";
 import message from "../../images/background.svg";
 import cursor from "../../images/mouse.png";
+import buttonBackground from "../../images/button.png";
 
 export const RoadSection = styled.section`
   background-image: url(${roadImage});
-  //background-attachment: fixed;
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -105,8 +106,7 @@ export const Cat = styled.img`
   right: 20px;
   top: 65px;
   z-index: 100;
-`
-
+`;
 
 export const Robot = styled.img`
   height: 150px;
@@ -115,5 +115,17 @@ export const Robot = styled.img`
   bottom: 20px;
   left: -90px;
   z-index: 5;
+`;
+
+export const DialogButton = styled.button`
+  position: absolute;
+  background-color: yellow;
+  bottom: 20px;
+  font-size: 20px;
+  font-family: 'Pixelify Sans', sans-serif;
+  right: 20px;
+  max-width: 100px;
+  max-height: 50px;
+
 `;
 
