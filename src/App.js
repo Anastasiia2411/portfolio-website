@@ -1,4 +1,4 @@
-import React, {useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState } from "react";
 import GlobalStyle from "./globalStyle";
 import StartSection from "./components/startSection";
 import SecondSection from "./components/secondSection";
@@ -15,67 +15,47 @@ function App() {
     const startSectionRef = useRef(null);
     const secondSectionRef = useRef(null);
     const thirdSectionRef = useRef(null);
+    const [firstSectionAnim, setFirstSectionAnim] = useState(false)
+    const [secondSectionAnim, setSecondSectionAnim] = useState(false)
+
 
     useEffect(() => {
-        const triggers = [
-            { ref: startSectionRef, offset: 0 },
-            { ref: secondSectionRef, offset: 1 },
-            { ref: thirdSectionRef, offset: 2 },
-        ];
-console.log(startSectionRef, secondSectionRef,thirdSectionRef)
-        triggers.forEach((trigger, index) => {
-            if (trigger.ref.current) {
-                ScrollTrigger.create({
-                    trigger: trigger.ref.current,
-                    start: "bottom bottom",
-                    onEnter: () => goToSection(index)
-                });
-            }
+        const sections = [startSectionRef.current, secondSectionRef.current, thirdSectionRef.current];
+
+        gsap.utils.toArray(sections).forEach((section, index) => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top top',
+                pin: true,
+                pinSpacing: false, // Убирает пробелы между секциями
+                markers: true,
+                scrub:1,
+            });
         });
 
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
 
-    }, [startSectionRef, secondSectionRef,thirdSectionRef ]);
-
-    function goToSection(i) {
-        gsap.to(window, {
-            scrollTo: { y: i * window.innerHeight, autoKill: false, ease: "Power3.easeInOut" },
-            duration: 0.85
-        });
-    }
 
     return (
         <div>
             <GlobalStyle/>
-            <StartSection ref={startSectionRef}/>
-            <SecondSection ref={secondSectionRef}/>
-            <ThirdSection ref={thirdSectionRef}/>
-
+            <div ref={startSectionRef} style={{overflow:"hidden"}}>
+            <StartSection setAnimation={setFirstSectionAnim} />
+            </div>
+            {firstSectionAnim ?
+            <div  ref={secondSectionRef}>
+            <SecondSection setAnimation={setSecondSectionAnim}/>
+            </div> :null}
+            {secondSectionAnim ? <div ref={thirdSectionRef}>
+            <ThirdSection />
+            </div> : null}
         </div>
     );
 }
 
-//тут проблема в ref измени  на React.forwardRef
 
-// function App() {
-//
-//     return (
-//         <div>
-//             <GlobalStyle/>
-//             <ReactFullpage
-//                 // Здесь можно добавить опции для fullPage.js, например:
-//                 scrollingSpeed={1000} /* Время в миллисекундах для скролла между секциями */
-//                 render={({ state, fullpageApi }) => {
-//                     return (
-//                         <ReactFullpage.Wrapper>
-//                             <div className="section"><StartSection/></div>
-//                             {/*<div className="section"><SecondSection/></div>*/}
-//                             <div className="section"><ThirdSection/></div>
-//                         </ReactFullpage.Wrapper>
-//                     );
-//                 }}
-//             />
-//         </div>
-//     );
-// }
 
 export default App;

@@ -15,7 +15,7 @@ import robot from "../images/robot.gif";
 
 gsap.registerPlugin(TextPlugin);
 
-const StartSection = React.forwardRef(({ text = "Frontend Developer" }, ref) =>  {
+function StartSection({ text = "Frontend Developer", setAnimation }) {
     const cursorRef = useRef(null);
 
     const [frontend, developer] = text.split(" ");
@@ -58,6 +58,7 @@ const StartSection = React.forwardRef(({ text = "Frontend Developer" }, ref) => 
                     y: 0,
                     duration: 1,
                     opacity: 1,
+                    onComplete: () => setAnimation(true),
                     ease: "power1.inOut",
                 });
             }
@@ -130,6 +131,6 @@ const StartSection = React.forwardRef(({ text = "Frontend Developer" }, ref) => 
             <Robot src={robot} alt="robot" ref={robotRef}/>
         </HeaderSection>
     );
-})
+}
 
 export default StartSection;
