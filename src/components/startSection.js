@@ -15,7 +15,7 @@ import robot from "../images/robot.gif";
 
 gsap.registerPlugin(TextPlugin);
 
-function StartSection({ text = "Frontend Developer", setAnimation }) {
+function StartSection({ text = "Frontend Developer",  }) {
     const cursorRef = useRef(null);
 
     const [frontend, developer] = text.split(" ");
@@ -58,7 +58,6 @@ function StartSection({ text = "Frontend Developer", setAnimation }) {
                     y: 0,
                     duration: 1,
                     opacity: 1,
-                    onComplete: () => setAnimation(true),
                     ease: "power1.inOut",
                 });
             }

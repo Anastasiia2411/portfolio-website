@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef } from "react";
 import GlobalStyle from "./globalStyle";
 import StartSection from "./components/startSection";
 import SecondSection from "./components/secondSection";
@@ -15,8 +15,13 @@ function App() {
     const startSectionRef = useRef(null);
     const secondSectionRef = useRef(null);
     const thirdSectionRef = useRef(null);
-    const [firstSectionAnim, setFirstSectionAnim] = useState(false)
-    const [secondSectionAnim, setSecondSectionAnim] = useState(false)
+
+    const handleLeave = () => {
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            document.body.style.overflow = '';
+        }, 500);
+    };
 
 
     useEffect(() => {
@@ -27,9 +32,10 @@ function App() {
                 trigger: section,
                 start: 'top top',
                 pin: true,
-                pinSpacing: false, // Убирает пробелы между секциями
+                pinSpacing: false,
                 markers: true,
                 scrub:1,
+                onLeave: handleLeave,
             });
         });
 
@@ -43,15 +49,14 @@ function App() {
         <div>
             <GlobalStyle/>
             <div ref={startSectionRef} style={{overflow:"hidden"}}>
-            <StartSection setAnimation={setFirstSectionAnim} />
+            <StartSection  />
             </div>
-            {firstSectionAnim ?
             <div  ref={secondSectionRef}>
-            <SecondSection setAnimation={setSecondSectionAnim}/>
-            </div> :null}
-            {secondSectionAnim ? <div ref={thirdSectionRef}>
+            <SecondSection />
+            </div>
+            <div ref={thirdSectionRef}>
             <ThirdSection />
-            </div> : null}
+            </div>
         </div>
     );
 }

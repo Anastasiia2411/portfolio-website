@@ -21,7 +21,7 @@ import Boom from "../images/boom.gif"
 import fire from "../images/fire.gif"
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-function SecondSection({setAnimation}) {
+function SecondSection() {
     const girlRef = useRef(null);
     const roadRef = useRef(null);
     const dialogGirl = useRef(null);
@@ -217,7 +217,6 @@ function SecondSection({setAnimation}) {
         }).to(dialogGirl.current, {
             duration: 2,
             text: "Наконец-то он от меня отстал.Спасибо!",
-            onComplete:()=>setAnimation(true),
             ease: "none",
             delay: 0
         });

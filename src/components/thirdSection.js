@@ -24,14 +24,14 @@ function ThirdSection() {
     const roomGirlRef = useRef(null);
     const catDialogContainer = useRef(null);
     const girlDialogContainer = useRef(null);
-    const dialogGirl = useRef(null)
-    const dialogCat = useRef(null)
-
-        // const addToRefs = (el) => {
-    //     if (el && !folders.current.includes(el)) {
-    //         folders.current.push(el);
-    //     }
-    // };
+    const dialogGirl = useRef(null);
+    const dialogCat = useRef(null);
+const folderWrapper= useRef(null)
+    const addToRefs = (el) => {
+        if (el && !folders.current.includes(el)) {
+            folders.current.push(el);
+        }
+    };
 
     useEffect(() => {
         const tl = gsap.timeline({
@@ -55,6 +55,10 @@ function ThirdSection() {
                     duration: 1,
                     ease: "power2.out"
                 })
+                .to(folderWrapper.current, {
+                    opacity:1,
+                    duration:0,
+                })
                 .to(triangle.current, {
                     duration: 2, opacity: 0, height: "200px"
                 })
@@ -77,8 +81,22 @@ function ThirdSection() {
                     text: "Привет!Зачем ты притащил сюда мой старый компьютер???",
                     ease: "none",
                     delay: 0
-                })
-
+                });
+            folders.current.forEach((folder, index) => {
+                // Первая анимация: вылет папок
+                tl.to(folder, {
+                    x: "190",
+                    y: "-640",
+                    opacity: 1,
+                    delay: 0.2,
+                    duration: 1,
+                    ease: "power3.out"
+                }).to(folder, {
+                    y: index * -100,
+                    duration: 1,
+                    ease: "power3.out"
+                }, "+=0.1");
+            });
         }
 
     }, []);
@@ -100,40 +118,6 @@ function ThirdSection() {
 
     }, []);
 
-    // useEffect(() => {
-    //     if (computerRef.current) {
-    //         const computerRect = computerRef.current.getBoundingClientRect();
-    //         console.log("Computer Rect:", computerRect);
-    //
-    //         const tl = gsap.timeline();
-    //
-    //         folders.current.forEach((folder, index) => {
-    //             // Первая анимация: вылет папок
-    //             tl.to(folder, {
-    //                 x: '400',
-    //                 y: '-640',
-    //                 opacity: 1,
-    //                 delay: 0.2 * index,
-    //                 duration: 2,
-    //                 ease: "power3.out"
-    //             }, 0);
-    //         });
-    //
-    //         folders.current.forEach((folder, index) => {
-    //             tl.to(folder, {
-    //                 y: index * -100,
-    //                 duration: 1,
-    //                 ease: "power3.out"
-    //             }, "+=0.1");
-    //         });
-    //
-    //         // tl.to(computerRef.current, {
-    //         //     x: '-400',
-    //         //     duration: 2,
-    //         // })
-    //     }
-    // }, [folders.current, computerRef.current]);
-
     function catMove() {
         gsap.to(cat.current, {
             y: -20,
@@ -147,23 +131,52 @@ function ThirdSection() {
     return (
         <RoomSection ref={roomSection}>
             <SecondSectionCursor ref={cursorRef}/>
-            {/*<div style={{ display:"flex", flexDirection:"column" }}>*/}
-            {/*{[...Array(7)].map((_, index) => (*/}
-            {/*    <div ref={addToRefs}     key={index}  style={{position:"absolute", left:"100px",bottom:0, marginBottom:"45px"}}>*/}
-            {/*    <img*/}
-            {/*        src={folder}*/}
-            {/*        alt="folder"*/}
-            {/*        width={70}*/}
-            {/*        height={70}*/}
-            {/*    />*/}
-            {/*        <p style={{margin:0, color:"white", textAlign:"center"}}>aloha</p>*/}
-            {/*    </div>*/}
-            {/*))}*/}
-            {/*</div>*/}
+            <div style={{ display: "flex", flexDirection: "column", opacity:0}} ref={folderWrapper}>
+                {[...Array(7)].map((_, index) => (
+                    <div ref={addToRefs} key={index}
+                         style={{ position: "absolute", left: "350px", bottom: 0, marginBottom: "45px" }}>
+                        <img
+                            src={folder}
+                            alt="folder"
+                            width={70}
+                            height={70}
+                        />
+                        <p style={{ margin: 0, color: "white", textAlign: "center" }}>aloha</p>
+                    </div>
+                ))}
+            </div>
             <SecondSectionDialogContainer top={"60px"} left={"63%"} src={catAvatarImg} text={"Snoofy"}
                                           containerRef={catDialogContainer} button={true} paragraphRef={dialogCat}/>
             <SecondSectionDialogContainer top={"50%"} left={"54%"} src={roomGirlAvatarImg} text={"Asy"}
                                           containerRef={girlDialogContainer} button={true} paragraphRef={dialogGirl}/>
+            <a href="#" style={{
+                fontSize: "18px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "110px",
+                left: "30px"
+            }}>HTML</a>
+            <a href="#" style={{
+                fontSize: "18px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "110px",
+                left: "65px"
+            }}>CSS</a>
+
+            <a href="#" style={{
+                fontSize: "13px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "103px",
+                left: "105px"
+            }}>JavaScript</a>
+
+
+
             <a href="#" style={{
                 fontSize: "20px",
                 position: "absolute",
@@ -172,6 +185,47 @@ function ThirdSection() {
                 top: "230px",
                 left: "180px"
             }}>React</a>
+            <a href="#" style={{
+                fontSize: "18px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "240px",
+                left: "140px"
+            }}>Git</a>
+            <a href="#" style={{
+                fontSize: "15px",
+                position: "absolute",
+                color: "aquamarine",
+                transform: "rotate(-90deg)",
+                top: "235px",
+                left: "40px"
+            }}>Webpack</a>
+
+            <a href="#" style={{
+                fontSize: "15px",
+                position: "absolute",
+                color: "aquamarine",
+                transform: "rotate(-90deg)",
+                top: "340px",
+                left: "113px"
+            }}>Playwright</a>
+            <a href="#" style={{
+                fontSize: "15px",
+                position: "absolute",
+                color: "yellow",
+                transform: "rotate(-90deg)",
+                top: "350px",
+                left: "50px"
+            }}>Next.js</a>
+            <a href="#" style={{
+                fontSize: "15px",
+                position: "absolute",
+                color: "yellow",
+                transform: "rotate(-90deg)",
+                top: "355px",
+                left: "93px"
+            }}>Strapi</a>
             <RoomGirl src={girl} alt="girl" ref={roomGirlRef}/>
             <Triangle ref={triangle}/>
             <img src={computer} ref={computerRef} className={"computer"} alt="computer" width={200} height={200}
