@@ -10,6 +10,7 @@ import roomGirlAvatarImg from "../images/roomGirlAvatar.png";
 import catAvatarImg from "../images/catAvatar.png";
 import computer from "../images/computer.png";
 import { SecondSectionCursor } from "./styles/secondSectionStyles";
+import mobile from "../images/mobile.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,7 +27,7 @@ function ThirdSection() {
     const girlDialogContainer = useRef(null);
     const dialogGirl = useRef(null);
     const dialogCat = useRef(null);
-const folderWrapper= useRef(null)
+    const folderWrapper = useRef(null);
     const addToRefs = (el) => {
         if (el && !folders.current.includes(el)) {
             folders.current.push(el);
@@ -56,8 +57,8 @@ const folderWrapper= useRef(null)
                     ease: "power2.out"
                 })
                 .to(folderWrapper.current, {
-                    opacity:1,
-                    duration:0,
+                    opacity: 1,
+                    duration: 0,
                 })
                 .to(triangle.current, {
                     duration: 2, opacity: 0, height: "200px"
@@ -85,15 +86,15 @@ const folderWrapper= useRef(null)
             folders.current.forEach((folder, index) => {
                 // Первая анимация: вылет папок
                 tl.to(folder, {
-                    x: "190",
+                    x: "230",
                     y: "-640",
                     opacity: 1,
                     delay: 0.2,
-                    duration: 1,
+                    duration: 0.5,
                     ease: "power3.out"
                 }).to(folder, {
                     y: index * -100,
-                    duration: 1,
+                    duration: 0.5,
                     ease: "power3.out"
                 }, "+=0.1");
             });
@@ -131,10 +132,36 @@ const folderWrapper= useRef(null)
     return (
         <RoomSection ref={roomSection}>
             <SecondSectionCursor ref={cursorRef}/>
-            <div style={{ display: "flex", flexDirection: "column", opacity:0}} ref={folderWrapper}>
+            <div style={{
+                position: "absolute",
+                zIndex: 100,
+                top: 0,
+                left: "130px",
+                backgroundImage: `url(${mobile})`,
+                width: "300px",
+                height: "550px",
+                backgroundSize: "cover",
+                transform: "rotate(90deg)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+            }}>
+                <div style={{ backgroundColor: "white", width: "78%", height: "78%", }}>
+                    <div style={{ transform: "rotate(-90deg)", width:"100%", height:"50%" }}>
+                        <p>alohs kdemdklk wldekfdmvmr, qlwkedmfn lqwkemdfnr wkedmef</p>
+                    </div>
+                </div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", opacity: 0 }} ref={folderWrapper}>
                 {[...Array(7)].map((_, index) => (
-                    <div ref={addToRefs} key={index}
-                         style={{ position: "absolute", left: "350px", bottom: 0, marginBottom: "45px" }}>
+                    <a src={"#"} ref={addToRefs} key={index}
+                       style={{
+                           position: "absolute",
+                           left: "350px",
+                           bottom: 0,
+                           marginBottom: "45px",
+                           cursor: "pointer"
+                       }}>
                         <img
                             src={folder}
                             alt="folder"
@@ -142,7 +169,7 @@ const folderWrapper= useRef(null)
                             height={70}
                         />
                         <p style={{ margin: 0, color: "white", textAlign: "center" }}>aloha</p>
-                    </div>
+                    </a>
                 ))}
             </div>
             <SecondSectionDialogContainer top={"60px"} left={"63%"} src={catAvatarImg} text={"Snoofy"}
@@ -165,7 +192,14 @@ const folderWrapper= useRef(null)
                 top: "110px",
                 left: "65px"
             }}>CSS</a>
-
+            <a href="#" style={{
+                fontSize: "18px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "110px",
+                left: "85px"
+            }}>SCSS</a>
             <a href="#" style={{
                 fontSize: "13px",
                 position: "absolute",
@@ -174,9 +208,23 @@ const folderWrapper= useRef(null)
                 top: "103px",
                 left: "105px"
             }}>JavaScript</a>
+            <a href="#" style={{
+                fontSize: "13px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "103px",
+                left: "130px"
+            }}>Typescript</a>
 
-
-
+            <a href="#" style={{
+                fontSize: "18px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "240px",
+                left: "150px"
+            }}>Redux</a>
             <a href="#" style={{
                 fontSize: "20px",
                 position: "absolute",
@@ -191,21 +239,29 @@ const folderWrapper= useRef(null)
                 color: "white",
                 transform: "rotate(-90deg)",
                 top: "240px",
+                left: "100px"
+            }}>Babel</a>
+            <a href="#" style={{
+                fontSize: "18px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "240px",
                 left: "140px"
             }}>Git</a>
             <a href="#" style={{
                 fontSize: "15px",
                 position: "absolute",
-                color: "aquamarine",
+                color: "white",
                 transform: "rotate(-90deg)",
                 top: "235px",
-                left: "40px"
+                left: "68px"
             }}>Webpack</a>
 
             <a href="#" style={{
                 fontSize: "15px",
                 position: "absolute",
-                color: "aquamarine",
+                color: "white",
                 transform: "rotate(-90deg)",
                 top: "340px",
                 left: "113px"
@@ -213,7 +269,7 @@ const folderWrapper= useRef(null)
             <a href="#" style={{
                 fontSize: "15px",
                 position: "absolute",
-                color: "yellow",
+                color: "white",
                 transform: "rotate(-90deg)",
                 top: "350px",
                 left: "50px"
@@ -221,16 +277,41 @@ const folderWrapper= useRef(null)
             <a href="#" style={{
                 fontSize: "15px",
                 position: "absolute",
-                color: "yellow",
+                color: "white",
                 transform: "rotate(-90deg)",
                 top: "355px",
                 left: "93px"
             }}>Strapi</a>
+            <a href="#" style={{
+                fontSize: "13px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "350px",
+                left: "285px"
+            }}>Bootstrap</a>
+            <a href="#" style={{
+                fontSize: "13px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "347px",
+                left: "255px"
+            }}>Material-UI</a>
+            <a href="#" style={{
+                fontSize: "13px",
+                position: "absolute",
+                color: "white",
+                transform: "rotate(-90deg)",
+                top: "355px",
+                left: "240px"
+            }}>Tailwind</a>
             <RoomGirl src={girl} alt="girl" ref={roomGirlRef}/>
             <Triangle ref={triangle}/>
             <img src={computer} ref={computerRef} className={"computer"} alt="computer" width={200} height={200}
                  style={{ marginBottom: "30px", position: "absolute", bottom: 0, left: "260px", zIndex: 2, scale: 0 }}/>
             <RoomCat src={catImage} ref={cat} alt="cat" onLoad={catMove}/>
+
 
         </RoomSection>
     );
