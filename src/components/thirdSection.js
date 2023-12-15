@@ -1,5 +1,14 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { RoomCat, RoomGirl, RoomSection, Triangle } from "./styles/thirdSectionStyles";
+import React, { useEffect, useRef } from "react";
+import {
+    ComputerImg,
+    FolderLink,
+    FolderParagraph,
+    FolderWrapper,
+    RoomCat,
+    RoomGirl,
+    RoomSection,
+    Triangle
+} from "./styles/thirdSectionStyles";
 import catImage from "../images/room-cat.gif";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,117 +19,297 @@ import roomGirlAvatarImg from "../images/roomGirlAvatar.png";
 import catAvatarImg from "../images/catAvatar.png";
 import computer from "../images/computer.png";
 import { SecondSectionCursor } from "./styles/secondSectionStyles";
-import mobile from "../images/mobile.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function ThirdSection() {
-    const cat = useRef(null);
-    const computerRef = useRef(null);
-    const roomSection = useRef(null);
-    const cursorRef = useRef(null);
-    const folders = useRef([]);
-    folders.current = [];
-    const triangle = useRef(null);
-    const roomGirlRef = useRef(null);
-    const catDialogContainer = useRef(null);
-    const girlDialogContainer = useRef(null);
-    const dialogGirl = useRef(null);
-    const dialogCat = useRef(null);
-    const folderWrapper = useRef(null);
+    const refs = {
+        cat: useRef(null),
+        computer: useRef(null),
+        roomSection: useRef(null),
+        cursor: useRef(null),
+        folders: useRef([]),
+        triangle: useRef(null),
+        roomGirl: useRef(null),
+        catDialogContainer: useRef(null),
+        girlDialogContainer: useRef(null),
+        dialogGirl: useRef(null),
+        dialogCat: useRef(null),
+        folderWrapper: useRef(null)
+    };
+
     const addToRefs = (el) => {
-        if (el && !folders.current.includes(el)) {
-            folders.current.push(el);
+        if (el && !refs.folders.current.includes(el)) {
+            refs.folders.current.push(el);
         }
     };
+
+    const projects = [
+        {
+            project: "susidy-ua",
+            description: "Per Intergal Bud's request, my colleague and I developed a fundraising website using HTML, SCSS, and JavaScript to aid the restoration of a war-damaged historical building in Novgorod-Siverskyi. The site promotes active donations and demonstrates the ability to deliver an excellent user experience based on client specifications.",
+            gitHub: ""
+        },
+        {
+            project: "Yanki_Project",
+            description: "A small eCommerce Project as a Personal Training Initiative. Developed individually to enhance skills in React, Redux, Styled Components, and Formik/Yup, this dynamic website showcases intuitive product browsing, cart management, and secure checkout, focusing on code structure, state management, and UI design.",
+            gitHub: ""
+        },
+        {
+            project: "Wealthont",
+            description: "A small landing page project as a personal initiative for practice. Developed independently using React, Styled Components, and responsive design principles, this project provided an opportunity to create a dynamic and stylish user interface for the landing page, combining technology and design.",
+            gitHub: ""
+        },
+        {
+            project: "FP4SocialNetwork (capitweet)",
+            description: "A Social Network Graduation Project at dat.it School with a team of 6. Collaborated to create a family-oriented social network inspired by Twitter, leveraging HTTP requests, websockets, React, Redux, and React Router for a dynamic user experience.",
+            gitHub: ""
+        },
+        {
+            project: "Aqua_landing_page",
+            description: "A simple yet elegant web project created using HTML and CSS. This project showcases a clean design and a user-friendly interface, suitable for businesses or individuals looking to establish an online presence.",
+            gitHub: ""
+        },
+        {
+            project: "Step-project-Cards",
+            description: "The 'Card Note' project is the third project in the training program, developed as a team effort. The outcome is a web application that enables employees to create, manage, and delete appointment cards for doctors.",
+            gitHub: ""
+        },
+        {
+            project: "think in english",
+            description: "Independently developed a website for an English language school, handling both design and the creation of a data management system on Strapi. Also managed server setup and application deployment with SSR for performance optimization.",
+            gitHub: ""
+        }
+    ];
 
     useEffect(() => {
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: roomSection.current,
+                trigger: refs.roomSection.current,
                 start: "top top",
                 end: "bottom bottom",
             },
             repeat: 0
         });
-        if (cat.current && computerRef.current) {
-            tl.to(cat.current, { duration: 0, scaleX: -1 })
-                .to(cat.current, { duration: 3, x: 1000 });
-            tl.to(cat.current, { duration: 0, scaleX: 1 })
-                .to(triangle.current, {
+        if (refs.cat.current && refs.computer.current) {
+            tl.to(refs.cat.current, { duration: 0, scaleX: -1 })
+                .to(refs.cat.current, { duration: 3, x: 1000 });
+            tl.to(refs.cat.current, { duration: 0, scaleX: 1 })
+                .to(refs.triangle.current, {
                     duration: 2, opacity: 0.2, height: "200px"
                 })
-                .to(computerRef.current, {
+                .to(refs.computer.current, {
                     autoAlpha: 1,
                     scale: 1,
                     duration: 1,
                     ease: "power2.out"
                 })
-                .to(folderWrapper.current, {
-                    opacity: 1,
-                    duration: 0,
-                })
-                .to(triangle.current, {
+                .to(refs.triangle.current, {
                     duration: 2, opacity: 0, height: "200px"
                 })
-                .to(cat.current, { duration: 0, scaleX: -1 })
-                .fromTo(catDialogContainer.current, {
+                .to(refs.cat.current, { duration: 0, scaleX: -1 })
+                .fromTo(refs.catDialogContainer.current, {
                     x: 600
                 }, { x: 0, duration: 2 })
-                .to(dialogCat.current, {
+                .to(refs.dialogCat.current, {
                     duration: 2,
                     text: "Мяу!",
                     ease: "none",
                     delay: 0
                 })
-                .to(roomGirlRef.current, { delay: 1, duration: 2, x: -450 })
-                .fromTo(girlDialogContainer.current, {
+                .to(refs.roomGirl.current, { delay: 1, duration: 2, x: -450 })
+                .to(refs.folderWrapper.current, {
+                    opacity: 1,
+                    duration: 0,
+                })
+                .fromTo(refs.girlDialogContainer.current, {
                     y: 600
                 }, { y: 0, duration: 2 })
-                .to(dialogGirl.current, {
+                .to(refs.dialogGirl.current, {
                     duration: 2,
                     text: "Привет!Зачем ты притащил сюда мой старый компьютер???",
                     ease: "none",
                     delay: 0
                 });
-            folders.current.forEach((folder, index) => {
-                // Первая анимация: вылет папок
+
+            const maxInColumn = 4;
+            const xOffset = 230;
+            const yOffset = -180;
+            refs.folders.current.forEach((folder, index) => {
+                const column = Math.floor(index / maxInColumn);
+                const positionInColumn = index % maxInColumn;
                 tl.to(folder, {
-                    x: "230",
-                    y: "-640",
+                    x: `${column * xOffset + 200}`,
+                    y: `${positionInColumn * yOffset}`,
                     opacity: 1,
                     delay: 0.2,
                     duration: 0.5,
                     ease: "power3.out"
-                }).to(folder, {
-                    y: index * -100,
-                    duration: 0.5,
-                    ease: "power3.out"
-                }, "+=0.1");
+                });
             });
         }
+
+        tl.to(refs.dialogCat.current, {
+                duration: 1,
+                text: "",
+                ease: "none",
+                delay: 2
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "я вынял все твои данные из этого компьютера",
+                ease: "none",
+                delay: 0
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 0,
+                text: "",
+                ease: "none",
+                delay: 2
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "инопланетяне уже украли часть данных но мне удалось забрать остальное",
+                ease: "none",
+                delay: 0
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 0,
+                text: "",
+                ease: "none",
+                delay: 2
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "ты поступаешь очень неосмотрительно смотря на ситуацию",
+                ease: "none",
+                delay: 0
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 0,
+                text: "",
+                ease: "none",
+                delay: 3
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "они уже послали робота за тобой...",
+                ease: "none",
+                delay: 0
+            }
+        ).to(refs.dialogGirl.current, {
+            duration: 0,
+            text: "",
+            ease: "none",
+            delay: 1
+        }).to(refs.dialogGirl.current, {
+            duration: 2,
+            text: "да он уже гонялся за мной я его сломала",
+            ease: "none",
+            delay: 0
+        }).to(refs.dialogCat.current, {
+                duration: 0,
+                text: "",
+                ease: "none",
+                delay: 3
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "Отлично!Но они все еще могут прилететь сами",
+                ease: "none",
+                delay: 0
+            }
+        ).to(refs.dialogGirl.current, {
+            duration: 0,
+            text: "",
+            ease: "none",
+            delay: 0
+        }).to(refs.dialogGirl.current, {
+            duration: 2,
+            text: "Но зачем им я??",
+            ease: "none",
+            delay: 0
+        }).to(refs.dialogCat.current, {
+                duration: 0,
+                text: "",
+                ease: "none",
+                delay: 2
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "Им нужно создать сайт который сможет поработить человечество!",
+                ease: "none",
+                delay: 0
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 0,
+                text: "",
+                ease: "none",
+                delay: 2
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "И ты одна из тех кто им нужна для этого",
+                ease: "none",
+                delay: 0
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 0,
+                text: "",
+                ease: "none",
+                delay: 2
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "Они уже собрали почти всех",
+                ease: "none",
+                delay: 0
+            }
+        ).to(refs.dialogGirl.current, {
+            duration: 0,
+            text: "",
+            ease: "none",
+            delay: 2
+        }).to(refs.dialogGirl.current, {
+            duration: 1,
+            text: "Меня они не получат!",
+            ease: "none",
+            delay: 0
+        }).to(refs.dialogCat.current, {
+                duration: 0,
+                text: "",
+                ease: "none",
+                delay: 2
+            }
+        ).to(refs.dialogCat.current, {
+                duration: 1,
+                text: "Осмотри все свои работы и сможем продолжить, нажми кнопку когда будешь готова",
+                ease: "none",
+                delay: 0
+            }
+        );
 
     }, []);
 
     useEffect(() => {
         const moveCursor = (e) => {
-            gsap.to(cursorRef.current, {
+            gsap.to(refs.cursor.current, {
                 x: e.clientX,
                 y: e.clientY,
                 duration: 0,
                 ease: "power3.out",
             });
         };
-        roomSection.current.addEventListener("mousemove", moveCursor);
+        refs.roomSection.current.addEventListener("mousemove", moveCursor);
 
         return () => {
-            roomSection.current.removeEventListener("mousemove", moveCursor);
+            refs.roomSection.current.removeEventListener("mousemove", moveCursor);
         };
 
     }, []);
 
     function catMove() {
-        gsap.to(cat.current, {
+        gsap.to(refs.cat.current, {
             y: -20,
             duration: 1,
             ease: "power1.inOut",
@@ -130,189 +319,30 @@ function ThirdSection() {
     }
 
     return (
-        <RoomSection ref={roomSection}>
-            <SecondSectionCursor ref={cursorRef}/>
-            <div style={{
-                position: "absolute",
-                zIndex: 100,
-                top: 0,
-                left: "130px",
-                backgroundImage: `url(${mobile})`,
-                width: "300px",
-                height: "550px",
-                backgroundSize: "cover",
-                transform: "rotate(90deg)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-            }}>
-                <div style={{ backgroundColor: "white", width: "78%", height: "78%", }}>
-                    <div style={{ transform: "rotate(-90deg)", width:"100%", height:"50%" }}>
-                        <p>alohs kdemdklk wldekfdmvmr, qlwkedmfn lqwkemdfnr wkedmef</p>
-                    </div>
-                </div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", opacity: 0 }} ref={folderWrapper}>
-                {[...Array(7)].map((_, index) => (
-                    <a src={"#"} ref={addToRefs} key={index}
-                       style={{
-                           position: "absolute",
-                           left: "350px",
-                           bottom: 0,
-                           marginBottom: "45px",
-                           cursor: "pointer"
-                       }}>
+        <RoomSection ref={refs.roomSection}>
+            <SecondSectionCursor ref={refs.cursor}/>
+            <FolderWrapper ref={refs.folderWrapper}>
+                {projects.map((el, index) => (
+                    <FolderLink src={"#"} ref={addToRefs} key={index}>
                         <img
                             src={folder}
                             alt="folder"
                             width={70}
                             height={70}
                         />
-                        <p style={{ margin: 0, color: "white", textAlign: "center" }}>aloha</p>
-                    </a>
+                        <FolderParagraph>{el.project}</FolderParagraph>
+                    </FolderLink>
                 ))}
-            </div>
+            </FolderWrapper>
             <SecondSectionDialogContainer top={"60px"} left={"63%"} src={catAvatarImg} text={"Snoofy"}
-                                          containerRef={catDialogContainer} button={true} paragraphRef={dialogCat}/>
+                                          containerRef={refs.catDialogContainer} paragraphRef={refs.dialogCat}/>
             <SecondSectionDialogContainer top={"50%"} left={"54%"} src={roomGirlAvatarImg} text={"Asy"}
-                                          containerRef={girlDialogContainer} button={true} paragraphRef={dialogGirl}/>
-            <a href="#" style={{
-                fontSize: "18px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "110px",
-                left: "30px"
-            }}>HTML</a>
-            <a href="#" style={{
-                fontSize: "18px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "110px",
-                left: "65px"
-            }}>CSS</a>
-            <a href="#" style={{
-                fontSize: "18px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "110px",
-                left: "85px"
-            }}>SCSS</a>
-            <a href="#" style={{
-                fontSize: "13px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "103px",
-                left: "105px"
-            }}>JavaScript</a>
-            <a href="#" style={{
-                fontSize: "13px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "103px",
-                left: "130px"
-            }}>Typescript</a>
+                                          containerRef={refs.girlDialogContainer} paragraphRef={refs.dialogGirl}/>
 
-            <a href="#" style={{
-                fontSize: "18px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "240px",
-                left: "150px"
-            }}>Redux</a>
-            <a href="#" style={{
-                fontSize: "20px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "230px",
-                left: "180px"
-            }}>React</a>
-            <a href="#" style={{
-                fontSize: "18px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "240px",
-                left: "100px"
-            }}>Babel</a>
-            <a href="#" style={{
-                fontSize: "18px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "240px",
-                left: "140px"
-            }}>Git</a>
-            <a href="#" style={{
-                fontSize: "15px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "235px",
-                left: "68px"
-            }}>Webpack</a>
-
-            <a href="#" style={{
-                fontSize: "15px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "340px",
-                left: "113px"
-            }}>Playwright</a>
-            <a href="#" style={{
-                fontSize: "15px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "350px",
-                left: "50px"
-            }}>Next.js</a>
-            <a href="#" style={{
-                fontSize: "15px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "355px",
-                left: "93px"
-            }}>Strapi</a>
-            <a href="#" style={{
-                fontSize: "13px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "350px",
-                left: "285px"
-            }}>Bootstrap</a>
-            <a href="#" style={{
-                fontSize: "13px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "347px",
-                left: "255px"
-            }}>Material-UI</a>
-            <a href="#" style={{
-                fontSize: "13px",
-                position: "absolute",
-                color: "white",
-                transform: "rotate(-90deg)",
-                top: "355px",
-                left: "240px"
-            }}>Tailwind</a>
-            <RoomGirl src={girl} alt="girl" ref={roomGirlRef}/>
-            <Triangle ref={triangle}/>
-            <img src={computer} ref={computerRef} className={"computer"} alt="computer" width={200} height={200}
-                 style={{ marginBottom: "30px", position: "absolute", bottom: 0, left: "260px", zIndex: 2, scale: 0 }}/>
-            <RoomCat src={catImage} ref={cat} alt="cat" onLoad={catMove}/>
-
-
+            <RoomGirl src={girl} alt="girl" ref={refs.roomGirl}/>
+            <Triangle ref={refs.triangle}/>
+            <ComputerImg src={computer} ref={refs.computer} alt="computer" width={200} height={200}/>
+            <RoomCat src={catImage} ref={refs.cat} alt="cat" onLoad={catMove}/>
         </RoomSection>
     );
 }

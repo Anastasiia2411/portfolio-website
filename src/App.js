@@ -33,7 +33,6 @@ function App() {
                 start: 'top top',
                 pin: true,
                 pinSpacing: false,
-                markers: true,
                 scrub:1,
                 onLeave: handleLeave,
             });
