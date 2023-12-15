@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
+    CloseIcon,
     ComputerImg,
     FolderLink,
     FolderParagraph,
-    FolderWrapper,
+    FolderWrapper, GithubLink, LinkEl, Popup, PopupHeader, PopupLibraries, PopupParagraph, PopupWrapper, ProjectImage,
     RoomCat,
     RoomGirl,
     RoomSection,
@@ -19,10 +20,36 @@ import roomGirlAvatarImg from "../images/roomGirlAvatar.png";
 import catAvatarImg from "../images/catAvatar.png";
 import computer from "../images/computer.png";
 import { SecondSectionCursor } from "./styles/secondSectionStyles";
+import closeSvg from "../images/close_pixel.svg";
+import susidyUaImg from "../images/projects_img/susidy_img.png";
+import yankiImg from "../images/projects_img/Yanki_img.png";
+import wealthontImg from "../images/projects_img/wealphont_img.png";
+import capitweetImg from "../images/projects_img/capitweet_img.png";
+import aquaImg from "../images/projects_img/aqua_img.png";
+import cardsImg from "../images/projects_img/cards.png";
+import englishImg from "../images/projects_img/thinEnglish_img.png";
+import cssImg from "../images/elemnts/css-3-svgrepo-com.svg";
+import scssImg from "../images/elemnts/sass-1.svg";
+import strapiImg from "../images/elemnts/strapi-2.svg";
+import javaScript from "../images/elemnts/icons8-javascript.svg";
+import htmlImg from "../images/elemnts/html-5-svgrepo-com.svg";
+import reactImg from "../images/elemnts/react.svg";
+import next from "../images/elemnts/nextjs-icon-svgrepo-com.svg";
+import redux from "../images/elemnts/redux.svg";
+import bootstrap from "../images/elemnts/icons8-bootstrap.svg";
+import tailwind from "../images/elemnts/tailwind-css-icon.svg";
+import material from "../images/elemnts/icons8-material-ui.svg";
+import webpackImg from "../images/elemnts/icons8-webpack.svg";
+import git from "../images/elemnts/git-svgrepo-com.svg";
+import gsapImg from "../images/elemnts/gsap.svg";
+import styledComponents from "../images/elemnts/styled-components.svg";
+import reactSpring from "../images/elemnts/react-spring-svgrepo-com.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function ThirdSection() {
+    const [window, setWindow] = useState(false);
+    const [openFolder, setOpenFolder] = useState(null)
     const refs = {
         cat: useRef(null),
         computer: useRef(null),
@@ -44,41 +71,60 @@ function ThirdSection() {
         }
     };
 
+    useEffect(()=>{
+        console.log("window", window)
+        console.log("openFolder", openFolder)
+
+    }, [window, openFolder])
     const projects = [
         {
-            project: "susidy-ua",
+            img: susidyUaImg,
+            project: "Susidy-ua",
             description: "Per Intergal Bud's request, my colleague and I developed a fundraising website using HTML, SCSS, and JavaScript to aid the restoration of a war-damaged historical building in Novgorod-Siverskyi. The site promotes active donations and demonstrates the ability to deliver an excellent user experience based on client specifications.",
-            gitHub: ""
+            gitHub: "",
+            libraries: [scssImg, htmlImg, javaScript]
         },
         {
+            img: yankiImg,
             project: "Yanki_Project",
             description: "A small eCommerce Project as a Personal Training Initiative. Developed individually to enhance skills in React, Redux, Styled Components, and Formik/Yup, this dynamic website showcases intuitive product browsing, cart management, and secure checkout, focusing on code structure, state management, and UI design.",
-            gitHub: ""
+            gitHub: "",
+            libraries: [reactImg, redux, styledComponents]
         },
         {
+            img: wealthontImg,
             project: "Wealthont",
             description: "A small landing page project as a personal initiative for practice. Developed independently using React, Styled Components, and responsive design principles, this project provided an opportunity to create a dynamic and stylish user interface for the landing page, combining technology and design.",
-            gitHub: ""
+            gitHub: "",
+            libraries: [reactImg, styledComponents]
         },
         {
+            img: capitweetImg,
             project: "FP4SocialNetwork (capitweet)",
             description: "A Social Network Graduation Project at dat.it School with a team of 6. Collaborated to create a family-oriented social network inspired by Twitter, leveraging HTTP requests, websockets, React, Redux, and React Router for a dynamic user experience.",
-            gitHub: ""
+            gitHub: "",
+            libraries: [reactImg, javaScript, redux,]
         },
         {
+            img: aquaImg,
             project: "Aqua_landing_page",
             description: "A simple yet elegant web project created using HTML and CSS. This project showcases a clean design and a user-friendly interface, suitable for businesses or individuals looking to establish an online presence.",
-            gitHub: ""
+            gitHub: "",
+            libraries: [cssImg, htmlImg, javaScript]
         },
         {
+            img: cardsImg,
             project: "Step-project-Cards",
             description: "The 'Card Note' project is the third project in the training program, developed as a team effort. The outcome is a web application that enables employees to create, manage, and delete appointment cards for doctors.",
-            gitHub: ""
+            gitHub: "",
+            libraries: [scssImg, htmlImg, javaScript]
         },
         {
+            img: englishImg,
             project: "think in english",
             description: "Independently developed a website for an English language school, handling both design and the creation of a data management system on Strapi. Also managed server setup and application deployment with SSR for performance optimization.",
-            gitHub: ""
+            gitHub: "",
+            libraries: [strapiImg, next, styledComponents, reactSpring]
         }
     ];
 
@@ -150,7 +196,7 @@ function ThirdSection() {
         }
 
         tl.to(refs.dialogCat.current, {
-                duration: 1,
+                duration: 0,
                 text: "",
                 ease: "none",
                 delay: 2
@@ -323,7 +369,7 @@ function ThirdSection() {
             <SecondSectionCursor ref={refs.cursor}/>
             <FolderWrapper ref={refs.folderWrapper}>
                 {projects.map((el, index) => (
-                    <FolderLink src={"#"} ref={addToRefs} key={index}>
+                    <FolderLink src={"#"} ref={addToRefs} key={index} onClick={()=>{setOpenFolder(el); setWindow(true)}}>
                         <img
                             src={folder}
                             alt="folder"
@@ -343,6 +389,46 @@ function ThirdSection() {
             <Triangle ref={refs.triangle}/>
             <ComputerImg src={computer} ref={refs.computer} alt="computer" width={200} height={200}/>
             <RoomCat src={catImage} ref={refs.cat} alt="cat" onLoad={catMove}/>
+            {window ? <PopupWrapper>
+                <Popup>
+                    <CloseIcon src={closeSvg} alt="close image" width={30} height={30} onClick={()=>{setWindow(false)}}/>
+                    <div>
+                        <ProjectImage src={openFolder?.img} alt="project" width={480} height={290}/>
+                        <div style={{
+                            display: "flex",
+                            marginLeft: "80px",
+                            marginTop: "30px",
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}>
+                            <GithubLink href=""/>
+                            <LinkEl href=""/>
+                        </div>
+                    </div>
+                    <div>
+                        <PopupLibraries>Libraries</PopupLibraries>
+                        <ul style={{
+                            display: "flex",
+                            listStyle: "none",
+                            justifyContent: "space-between",
+                            maxWidth: "200px"
+                        }}>
+                            {openFolder?.libraries.map((el, index) => (
+                                <li>
+                                    <img src={el} alt="" width={60} height={60} key={index}/>
+                                </li>
+                            ))
+
+                            }
+                        </ul>
+
+                        <PopupHeader>{openFolder?.project}</PopupHeader>
+                        <PopupParagraph>{openFolder?.description}</PopupParagraph>
+
+                    </div>
+                </Popup>
+            </PopupWrapper> : null}
+
         </RoomSection>
     );
 }

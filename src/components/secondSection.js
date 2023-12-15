@@ -34,6 +34,7 @@ import git from "../images/elemnts/git-svgrepo-com.svg";
 import gsapImg from "../images/elemnts/gsap.svg";
 import styledComponents from "../images/elemnts/styled-components.svg";
 import reactSpring from "../images/elemnts/react-spring-svgrepo-com.svg";
+import reactImg from "../images/elemnts/react.svg"
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 
