@@ -13,9 +13,6 @@ export const RoomSection = styled.section`
   width: 100vw;
   position: relative;
   overflow: hidden;
-  //display: flex;
-  //justify-content: start;
-  //align-items: end;
 `;
 
 export const RoomCat = styled.img`
@@ -113,8 +110,9 @@ export const Popup = styled.div`
 
 export const CloseIcon = styled.img`
   position: absolute;
-  right: 40px;
-  top: 40px
+  right: 50px;
+  top: 50px;
+  cursor: pointer;
 `;
 
 export const ProjectImage = styled.img`

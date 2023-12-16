@@ -329,11 +329,21 @@ function ThirdSection() {
             }
         ).to(refs.dialogCat.current, {
                 duration: 1,
-                text: "Осмотри все свои работы и сможем продолжить, нажми кнопку когда будешь готова",
+                text: "Осмотри все свои работы и сможем продолжить",
                 ease: "none",
                 delay: 0
             }
-        );
+        ).to(refs.dialogGirl.current, {
+            duration: 0,
+            text: "",
+            ease: "none",
+            delay: 2
+        }).to(refs.dialogGirl.current, {
+            duration: 1,
+            text: "У меня есть идея!",
+            ease: "none",
+            delay: 0
+        });
 
     }, []);
 
