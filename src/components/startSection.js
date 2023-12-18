@@ -41,13 +41,13 @@ function StartSection({ text = "Frontend Developer",  }) {
 
         tl.to(elFrontend, {
             duration: frontend.length * 0.1,
-            text: frontend,
+            text: "frontend\n",
             ease: "none"
         });
 
         tl.to(elDeveloper, {
             duration: developer.length * 0.1,
-            text: developer,
+            text: "developer",
             ease: "none",
             onComplete: () => {
                 let newAnimation = gsap.timeline();

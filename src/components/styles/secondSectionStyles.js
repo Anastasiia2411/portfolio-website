@@ -97,7 +97,7 @@ export const SecondSectionCursor = styled.div`
   background-image: url(${cursor});
   background-size: 100% 100%; /* Заполнить элемент изображением */
   position: absolute;
-  z-index: 1000;
+  z-index: 2000;
   pointer-events: none;
 `;
 

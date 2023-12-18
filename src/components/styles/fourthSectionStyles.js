@@ -12,8 +12,9 @@ export const FourthSectionWrapper = styled.section`
   background-position: center;
   display: flex;
   justify-content: end;
-  overflow: hidden;
+  //overflow: hidden;
   align-items: start;
+  position: relative;
 `;
 
 export const Computer = styled.div`

@@ -7,7 +7,7 @@ export const HeaderSection = styled.section`
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  
+
 `;
 
 export const NameParagraph = styled.p`
@@ -23,22 +23,11 @@ export const ProfessionHeader = styled.h1`
   font-size: 84px;
   margin-left: 60px;
   margin-top: 130px;
-  max-width: 790px;
   line-height: 150px;
+  max-width: 840px;
+  overflow-wrap: break-word;
   text-transform: uppercase;
   margin-bottom: 0;
-
-  & > span {
-    display: inline-block;
-
-    &:nth-child(2) {
-      margin-left: 40px;
-    }
-
-    &:nth-child(3) {
-      margin-left: 70px;
-    }
-  }
 `;
 
 export const ArrowImg = styled.img`
@@ -70,11 +59,11 @@ export const CustomCursor = styled.div`
   height: 100px;
   background-color: white;
   border-radius: 50%;
-  position: absolute; 
+  position: absolute;
   pointer-events: none;
   z-index: 1000;
   mix-blend-mode: difference;
-`
+`;
 export const Robot = styled.img`
   height: 150px;
   width: 150px;
@@ -82,4 +71,4 @@ export const Robot = styled.img`
   bottom: -20px;
   left: -90px;
   z-index: 5;
-`
+`;

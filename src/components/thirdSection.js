@@ -71,11 +71,6 @@ function ThirdSection() {
         }
     };
 
-    useEffect(()=>{
-        console.log("window", window)
-        console.log("openFolder", openFolder)
-
-    }, [window, openFolder])
     const projects = [
         {
             img: susidyUaImg,
