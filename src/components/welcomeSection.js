@@ -17,7 +17,7 @@ import robot from "../images/robot.gif";
 
 gsap.registerPlugin(TextPlugin);
 
-function WelcomeSection() {
+function WelcomeSection({onButtonClick}) {
     const refs = useRef({
         cursorRef: null,
         professionFrontend: null,
@@ -74,8 +74,8 @@ function WelcomeSection() {
             scrollTrigger: {
                 trigger: refs.section,
             },
-            x: window.innerWidth + 100,
-            duration: 5,
+            x: window.innerWidth + 1500,
+            duration: 11,
         });
         gsap.to(refs.arrowImg, {
             y: 40,
@@ -109,11 +109,13 @@ function WelcomeSection() {
                 <span ref={setRef("professionDeveloper")}/>
                 <span ref={setRef("cursor")}>|</span>
             </ProfessionHeader>
-            <ArrowImg src={arrowSvg} alt="arrow" ref={setRef("arrowImg")}/>
+            <ArrowImg src={arrowSvg} alt="arrow" ref={setRef("arrowImg")} onClick={onButtonClick}/>
             <WorkStatus ref={setRef("openToWork")} data-text="open to work">open to work</WorkStatus>
             <CustomCursor ref={setRef("cursorRef")}/>
+            <div>
             <Girl ref={setRef("girlRef")}  src={girl} alt="girl"/>
             <Robot src={robot} alt="robot" ref={setRef("robotRef")}/>
+            </div>
         </HeaderSection>
     );
 }

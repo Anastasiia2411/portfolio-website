@@ -43,15 +43,19 @@ function App() {
         };
     }, []);
 
+    const scrollToSection = (ref) => {
+        ref.current.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <div>
             <GlobalStyle/>
             <div ref={startSectionRef} style={{ overflow: "hidden" }}>
-                <WelcomeSection/>
+                <WelcomeSection  onButtonClick={() => scrollToSection(secondSectionRef)} />
             </div>
-            {/*<div ref={secondSectionRef}>*/}
-            {/*    <SecondSection/>*/}
-            {/*</div>*/}
+            <div ref={secondSectionRef}>
+                <SecondSection/>
+            </div>
             {/*<div ref={thirdSectionRef}>*/}
             {/*    <ThirdSection/>*/}
             {/*</div>*/}

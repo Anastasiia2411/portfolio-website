@@ -3,6 +3,7 @@ import roadImage from "../../images/road.gif";
 import way from "../../images/way.png";
 import message from "../../images/background.svg";
 import cursor from "../../images/mouse.png";
+import robot from "../../images/robot.gif";
 import buttonBackground from "../../images/button.png";
 
 export const RoadSection = styled.section`
@@ -114,6 +115,16 @@ export const Robot = styled.img`
   position: absolute;
   bottom: 20px;
   left: -90px;
+  z-index: 5;
+`;
+
+export const WrapperRobot = styled.div`
+  position:absolute;
+  background-image: url(${robot});
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  bottom: 0;
   z-index: 5;
 `;
 

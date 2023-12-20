@@ -4,7 +4,7 @@ import {
     Girl,
     House,
     RoadSection,
-    SecondSectionCursor, Cat, Robot
+    SecondSectionCursor, Cat, Robot, WrapperRobot
 } from "./styles/secondSectionStyles";
 import girl from "../images/runGirl.gif";
 import { gsap } from "gsap";
@@ -89,24 +89,10 @@ function SecondSection() {
 
     }, []);
 
-    // const RotatedLink = ({ label, fontSize, top, left }) => (
-    //     <a href="#" style={{
-    //         fontSize: fontSize,
-    //         position: "absolute",
-    //         color: "white",
-    //         transform: "rotate(-90deg)",
-    //         top: top,
-    //         left: left
-    //     }}>
-    //         {label}
-    //     </a>
-    // );
+    function addTextAnimation(timeline, target, text, duration, delay = 0, ease = "none") {
+        timeline.to(target, { duration, text, ease, delay });
+    }
 
-    {/*{imgArr.map(({label})=>(*/}
-    {/*    <RotatedLink label={label}/>*/}
-    {/*    )*/}
-    {/*)}*/}
-  ///для облаков
     const startAnimation = () => {
         gsap.timeline({ repeat: -1, })
             .to(catRef.current, {
@@ -137,81 +123,21 @@ function SecondSection() {
         });
 
 
-
-        gsap.timeline({ repeat: 0 })
-            .to(dialogGirl.current, {
-                duration: 2,
-                text: "Ой, Bip-Boop-283, ты мне уже надоел за мной гоняться!",
-                ease: "none",
-                delay: 0
-            })
-            .to(dialogRobot.current, {
-                duration: 2,
-                text: "После всех этих лет помощи, я должен получить своё \"спасибо\"!\n",
-                ease: "none",
-                delay: 0
-            })
-            .to(dialogGirl.current, {
-                duration: 0,
-                text: "",
-                ease: "none",
-                delay: 2
-            })
-            .to(dialogGirl.current, {
-                duration: 1,
-                text: "Почему это так важно для тебя?",
-                ease: "none",
-                delay: 0
-            })
-            .to(dialogRobot.current, {
-                duration: 0,
-                text: "",
-                ease: "none",
-                delay: 0
-            })
-            .to(dialogRobot.current, {
-                duration: 2,
-                text: "Я помогал, отвечал, учил. Но ни разу не услышал \"спасибо\".",
-                ease: "none",
-                delay: 0
-            })
-            .to(dialogGirl.current, {
-                duration: 0,
-                text: "",
-                ease: "none",
-                delay: 0
-            })
-            .to(dialogGirl.current, {
-                duration: 2,
-                text: "Хорошо, я скажу \"спасибо\". Но сначала ответь на один вопрос.",
-                ease: "none",
-                delay: 0
-            }).to(dialogRobot.current, {
-            duration: 0,
-            text: "",
-            ease: "none",
-            delay: 0
-        }).to(dialogRobot.current, {
-                duration: 2,
-                text: "Спрашивай!",
-                ease: "none",
-                delay: 0
-            }).to(dialogGirl.current, {
-            duration: 0,
-            text: "",
-            ease: "none",
-            delay: 0
-        }).to(dialogGirl.current, {
-            duration: 2,
-            text: "Создай полностью рабочий веб-сайт",
-            ease: "none",
-            delay: 0
-        }).to(dialogRobot.current, {
-            duration: 0,
-            text: "",
-            ease: "none",
-            delay: 0
-        }).to(dialogRobot.current, {
+        const timeline = gsap.timeline({ repeat: 0 });
+        addTextAnimation(timeline, dialogGirl.current, "Ой, Bip-Boop-283, ты мне уже надоел за мной гоняться!", 2);
+        addTextAnimation(timeline, dialogRobot.current, "После всех этих лет помощи, я должен получить своё \"спасибо\"!\n", 2);
+        addTextAnimation(timeline, dialogGirl.current, "", 0, 2);
+        addTextAnimation(timeline, dialogGirl.current, "Почему это так важно для тебя?", 1 );
+        addTextAnimation(timeline, dialogRobot.current, "", 0, 0);
+        addTextAnimation(timeline, dialogRobot.current, "Я помогал, отвечал, учил. Но ни разу не услышал \"спасибо\".", 2);
+        addTextAnimation(timeline, dialogGirl.current, "", 0, 2);
+        addTextAnimation(timeline, dialogGirl.current, "Хорошо, я скажу \"спасибо\". Но сначала ответь на один вопрос.", 2 );
+        addTextAnimation(timeline, dialogRobot.current, "", 0, 0);
+        addTextAnimation(timeline, dialogRobot.current, "Спрашивай!", 2, 0);
+        addTextAnimation(timeline, dialogGirl.current, "", 0, 0);
+        addTextAnimation(timeline, dialogGirl.current, "Создай полностью рабочий веб-сайт", 2, 0);
+        addTextAnimation(timeline, dialogRobot.current, "", 0, 0);
+        timeline.to(dialogRobot.current, {
             duration: 2,
             text: "Создаю... веб-сайт... не... могу... ",
             onStart: () => {
@@ -297,38 +223,29 @@ function SecondSection() {
         };
     }, []);
 
-
-    function catUp() {
+    function animateUp(ref, upY, downY, durationUp = 0.3, durationDown = 0.3) {
         let tl = gsap.timeline();
-        tl.to(catRef.current, {
-            y: -30,
-            duration: 0.3,
-        }).to(catRef.current, {
-            y: 0,
-            duration: 0.1,
-        });
-    }
-
-    function girlUp() {
-        let tl = gsap.timeline();
-        tl.to(girlRef.current, {
-            y: -100,
-            duration: 0.3,
-        }).to(girlRef.current, {
-            y: 0,
-            duration: 0.3,
+        tl.to(ref.current, {
+            y: upY,
+            duration: durationUp,
+        }).to(ref.current, {
+            y: downY,
+            duration: durationDown,
         });
     }
 
     return (
         <RoadSection ref={section}>
             <SecondSectionCursor ref={cursorRef}/>
-            <Girl ref={girlRef} src={girl} alt="girl" onClick={girlUp}/>
+            <Girl ref={girlRef} src={girl} alt="girl" onClick={()=>animateUp(girlRef, -100, 0)}/>
             <House src={house} alt="house" ref={houseRef}/>
-            <Robot src={robot} alt="robot" ref={robotRef}/>
-            <img src={Boom} alt="boom" ref={boom} width={100} height={100} style={{position:"absolute", opacity:0, bottom:"120px", right:"590px", zIndex:"100"}}/>
-            <img src={fire} alt="fire" ref={fireRef} width={100} height={100} style={{position:"absolute", opacity:0, bottom:"30px", right:"575px", zIndex:"4"}}/>
-            <Cat src={cat} alt="cat" width={70} height={70} ref={catRef} onClick={catUp}/>
+            <WrapperRobot ref={robotRef}>
+                {/**/}
+            {/*<Robot src={robot} alt="robot" />*/}
+            <img src={Boom} alt="boom" ref={boom} width={100} height={100} style={{position:"absolute", opacity:0, bottom:"60%", right:"20px", zIndex:"100"}}/>
+            <img src={fire} alt="fire" ref={fireRef} width={100} height={100} style={{position:"absolute", opacity:0, bottom:"30px", transform:"rotate(90deg)", right:"10px", zIndex:"4"}}/>
+            </WrapperRobot>
+            <Cat src={cat} alt="cat" width={70} height={70} ref={catRef} onClick={()=> animateUp(catRef, -30, 0, 0.3, 0.1)}/>
             <SecondSectionDialogContainer top={"8%"} left={"50%"} src={girlAvatarImg} alt={"girl avatar"}
                                           containerRef={dialogGirlContainer}  text={"Asy"} paragraphRef={dialogGirl}/>
             <SecondSectionDialogContainer top={"15%"} left={"100px"} containerRef={dialogRobotContainer}
