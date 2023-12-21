@@ -7,9 +7,6 @@ export const HeaderSection = styled.section`
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  @media (max-width: 600px) {
-    height: 90vh;
-  }
 `;
 
 export const NameParagraph = styled.p`

@@ -19,7 +19,7 @@ import SecondSectionDialogContainer from "./secondSectionDialogContainer";
 import roomGirlAvatarImg from "../images/roomGirlAvatar.png";
 import catAvatarImg from "../images/catAvatar.png";
 import computer from "../images/computer.png";
-import { SecondSectionCursor } from "./styles/secondSectionStyles";
+import { SecondSectionCursor } from "./styles/techStackSection.styles";
 import closeSvg from "../images/close_pixel.svg";
 import susidyUaImg from "../images/projects_img/susidy_img.png";
 import yankiImg from "../images/projects_img/Yanki_img.png";

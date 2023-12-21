@@ -4,7 +4,7 @@ import SecondSectionDialogContainer from "./secondSectionDialogContainer";
 import catAvatarImg from "../images/catAvatar.png";
 import roomGirlAvatarImg from "../images/roomGirlAvatar.png";
 import { gsap } from "gsap";
-import { SecondSectionCursor } from "./styles/secondSectionStyles";
+import { SecondSectionCursor } from "./styles/techStackSection.styles";
 
 function FourthSection() {
     const roomSection = useRef(null);

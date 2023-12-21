@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import GlobalStyle from "./globalStyle";
 import WelcomeSection from "./components/welcomeSection";
-import SecondSection from "./components/secondSection";
+import TechStackSection from "./components/techStackSection";
 import ThirdSection from "./components/thirdSection";
 import FourthSection from "./components/fourthSection";
 import { gsap } from "gsap";
@@ -54,7 +54,7 @@ function App() {
                 <WelcomeSection  onButtonClick={() => scrollToSection(secondSectionRef)} />
             </div>
             <div ref={secondSectionRef}>
-                <SecondSection/>
+                <TechStackSection/>
             </div>
             {/*<div ref={thirdSectionRef}>*/}
             {/*    <ThirdSection/>*/}

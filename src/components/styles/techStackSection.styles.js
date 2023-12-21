@@ -4,6 +4,7 @@ import way from "../../images/way.png";
 import message from "../../images/background.svg";
 import cursor from "../../images/mouse.png";
 import robot from "../../images/robot.gif";
+import house from "../../images/house.png";
 import buttonBackground from "../../images/button.png";
 
 export const RoadSection = styled.section`
@@ -40,13 +41,16 @@ export const Girl = styled.img`
   z-index: 5;
 `;
 
-export const House = styled.img`
-  width: 1000px;
-  height: 900px;
+export const House = styled.div`
+  background-image: url(${house});
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
-  right: -390px;
-  bottom: -60px;
+  width: 800px;
+  height: 900px;
   z-index: 10;
+  left: 720px;
+  bottom: 600px;
   pointer-events: none;
 `;
 
@@ -104,8 +108,8 @@ export const SecondSectionCursor = styled.div`
 
 export const Cat = styled.img`
   position: absolute;
-  right: 20px;
-  top: 65px;
+  right: 100px;
+  top: 125px;
   z-index: 100;
 `;
 
@@ -119,13 +123,14 @@ export const Robot = styled.img`
 `;
 
 export const WrapperRobot = styled.div`
-  position:absolute;
+  position: absolute;
   background-image: url(${robot});
   width: 150px;
   height: 150px;
   background-size: cover;
-  bottom: 0;
-  z-index: 5;
+  bottom: 20px;
+  left: -100px;
+  z-index: 7;
 `;
 
 export const DialogButton = styled.button`
@@ -137,6 +142,24 @@ export const DialogButton = styled.button`
   right: 20px;
   max-width: 100px;
   max-height: 50px;
-
 `;
+
+export const BoomImg = styled.img`
+  position: absolute;
+  opacity: 0;
+  bottom: 60%;
+  right: 20px;
+  z-index: 100
+`;
+
+export const FireImg = styled.img`
+  position: absolute;
+  opacity: 0;
+  bottom: 6px;
+  transform: rotate(90deg);
+  right: 10px;
+  z-index: 4;
+`;
+
+
 

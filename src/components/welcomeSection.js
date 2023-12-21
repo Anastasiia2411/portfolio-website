@@ -10,7 +10,7 @@ import {
     CustomCursor,
     Robot,
     Girl
-} from "./styles/welcomeSection.style";
+} from "./styles/welcomeSection.styles";
 import arrowSvg from "../images/arrow.svg";
 import girl from "../images/runGirl.gif";
 import robot from "../images/robot.gif";

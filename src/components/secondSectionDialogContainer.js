@@ -6,7 +6,7 @@ import {
     DialogHeader,
     DialogParagraph,
     TextContainer
-} from "./styles/secondSectionStyles";
+} from "./styles/techStackSection.styles";
 import girlAvatarImg from "../images/girlAvatar.png";
 
 function SecondSectionDialogContainer({ top, left, paragraphRef, src, alt, text, containerRef, button }) {

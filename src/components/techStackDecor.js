@@ -3,10 +3,10 @@ import firstTree from "../images/tree-pixel-first.svg";
 import shop from "../images/shop.png";
 import bush from "../images/pixel-bush.svg";
 import flowers from "../images/pixel-flower.svg";
-import { DecorContainer, FirstTreeLeft, FirstTreeRight, Shop, BushRight, Flowers, BushLeft } from "./styles/secondSectionDecor";
+import { DecorContainer, FirstTreeLeft, FirstTreeRight, Shop, BushRight, Flowers, BushLeft } from "./styles/techStackDecor.styles";
 
 
-function SecondSectionDecor(){
+function TechStackDecor(){
     return(
         <DecorContainer>
             <FirstTreeLeft src={firstTree} alt="" />
@@ -19,4 +19,4 @@ function SecondSectionDecor(){
     )
 }
 
-export  default SecondSectionDecor
+export  default TechStackDecor
