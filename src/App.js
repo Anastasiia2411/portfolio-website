@@ -8,6 +8,8 @@ import { gsap } from "gsap";
 
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MyThree from "./components/three";
+import Earth from "./components/Earth";
 
 
 gsap.registerPlugin(ScrollToPlugin);
@@ -56,12 +58,15 @@ function App() {
             <div ref={secondSectionRef}>
                 <TechStackSection/>
             </div>
-            {/*<div ref={thirdSectionRef}>*/}
-            {/*    <ThirdSection/>*/}
-            {/*</div>*/}
-            {/*<div ref={fourthSectionRef}>*/}
-            {/*    <FourthSection/>*/}
-            {/*</div>*/}
+            <div ref={thirdSectionRef}>
+                <ThirdSection/>
+            </div>
+            <div ref={fourthSectionRef}>
+                <FourthSection/>
+            </div>
+            <div style={{width:"100vw", height:"100vh"}}>
+                <MyThree/>
+            </div>
         </div>
     );
 }
